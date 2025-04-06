@@ -4,7 +4,10 @@ const cors = require("cors");
 const { Server } = require("socket.io");
 const http = require("http");
 const connectDB = require("./config/db.js");
+const logger = require("./utils/logger.js");
 const authRoutes = require("./routes/authRoutes.js");
+const userRoutes = require("./routes/userRoutes.js");
+const bodyParser = require("body-parser");
 // const User = require("./models/User.js");
 
 dotenv.config();
@@ -30,27 +33,14 @@ io.on("connection", (socket) => {
     console.log("User disconnected");
   });
 });
-
-// const seedTestUser = async () => {
-//   const exists = await User.findOne({ email: "test@example.com" });
-//   if (!exists) {
-//     await User.create({
-//       username: "testuser",
-//       email: "test@example.com",
-//       password: "password123",
-//     });
-//     console.log("✅ Test user created");
-//   } else {
-//     console.log("ℹ️ Test user already exists");
-//   }
-// };
-
-// seedTestUser();
-
+app.use(bodyParser.json());
 app.use(cors());
 app.use(express.json());
-app.use("/api/user", authRoutes);
+app.use("/api/user", userRoutes);
+app.use("/api/auth", authRoutes);
 
-server.listen(5001, () => {
-  console.log("Server running on port 5001");
+const PORT = process.env.PORT || 5001;
+server.listen(PORT, () => {
+  logger.info(`Server Connected to port ${PORT}`);
+  logger.info(`Frontend should connect to http://localhost:3000`);
 });
