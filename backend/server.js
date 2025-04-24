@@ -9,6 +9,7 @@ const authRoutes = require("./routes/authRoutes.js");
 const userRoutes = require("./routes/userRoutes.js");
 const bodyParser = require("body-parser");
 // const User = require("./models/User.js");
+const redis = require("./redis/redisClient.js");
 
 dotenv.config();
 connectDB();
@@ -33,7 +34,7 @@ io.on("connection", (socket) => {
     console.log("User disconnected");
   });
 });
-app.use(bodyParser.json());
+//app.use(bodyParser.json());
 app.use(cors());
 app.use(express.json());
 app.use("/api/user", userRoutes);
