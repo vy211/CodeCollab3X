@@ -8,8 +8,10 @@ const logger = require("./utils/logger.js");
 const authRoutes = require("./routes/authRoutes.js");
 const userRoutes = require("./routes/userRoutes.js");
 const bodyParser = require("body-parser");
+const cookieParser = require("cookie-parser");
+
 // const User = require("./models/User.js");
-const redis = require("./redis/redisClient.js");
+//const redis = require("./redis/redisClient.js");//uncoment to start redis
 
 dotenv.config();
 connectDB();
@@ -37,6 +39,7 @@ io.on("connection", (socket) => {
 //app.use(bodyParser.json());
 app.use(cors());
 app.use(express.json());
+app.use(cookieParser());
 app.use("/api/user", userRoutes);
 app.use("/api/auth", authRoutes);
 
