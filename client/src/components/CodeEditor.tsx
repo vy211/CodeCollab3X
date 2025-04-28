@@ -43,7 +43,7 @@ const CodeEditor: React.FC = () => {
           id="language"
           value={language}
           onChange={(e) => setLanguage(e.target.value as "javascript" | "python" | "java")}
-          className="p-2 border border-gra-300 rounded-md"
+          className="p-2 border border-gra-300 rounded-md text-black"
         >
           <option value="javascript">JavaScript</option>
           <option value="python">Python</option>
@@ -58,7 +58,7 @@ const CodeEditor: React.FC = () => {
           extensions={[languageExtensions[language]]}
           theme={dracula}
           // onChange={(value) => handleCodeChange(value)}
-          className="h-full border border-gray-300 rounded-lg"
+          className="h-full border border-gray-300 rounded-lg text-left"
         />
       </div>
     </div>

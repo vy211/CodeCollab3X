@@ -23,7 +23,7 @@ export default function ChatSection() {
           placeholder="Type..."
           value={newMessage}
           onChange={(e) => setNewMessage(e.target.value)}
-          className="flex-1 p-2 rounded-md border border-gray-400"
+          className="flex-1 p-2 rounded-md border text-black border-gray-400"
         />
         <button
           onClick={sendMessage}
